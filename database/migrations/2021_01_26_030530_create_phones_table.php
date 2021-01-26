@@ -18,8 +18,8 @@ class CreatePhonesTable extends Migration
             $table->id();
             $table->foreignIdFor(Person::class);
             $table->integer('area_code');
-            $table->integer('number');
-            $table->integer('extension');
+            $table->string('number',20);
+            $table->integer('extension')->nullable();
             $table->timestamps();
         });
     }

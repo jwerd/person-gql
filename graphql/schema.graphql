@@ -9,6 +9,8 @@ type Query {
     user(id: ID @eq): User @find
     persons: [Person!]! @paginate(defaultCount: 10)
     person(id: ID @eq): Person @find
+    phones: [Phone!]! @paginate(defaultCount: 10)
+    phone(id: ID @eq): Phone @find
 }
 
 type User {
@@ -27,4 +29,15 @@ type Person  {
     last_name: String!
     created_at: DateTime!
     updated_at: DateTime!
+    phones: [Phone!]! @hasMany
+}
+
+type Phone  {
+    id: ID!
+    area_code: Integer!
+    number: String!
+    extension: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+    person: Person! @belongsTo
 }
