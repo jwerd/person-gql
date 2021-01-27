@@ -34,7 +34,7 @@ type Person  {
 
 type Phone  {
     id: ID!
-    area_code: Integer!
+    area_code: Int!
     number: String!
     extension: String!
     created_at: DateTime!
