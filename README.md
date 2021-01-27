@@ -1,5 +1,7 @@
 Laravel + Lighthouse GraphQL
-=== Basic query to return person/phone payload
+
+Basic query to return person/phone payload
+
     {
         persons(first:100) {
             data {
