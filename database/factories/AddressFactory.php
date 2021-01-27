@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Address;
+use App\Models\Person;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AddressFactory extends Factory
@@ -22,7 +23,12 @@ class AddressFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'person_id' => Person::factory(),
+            'street1' => $this->faker->streetAddress,
+            'street2' => '',
+            'city' => $this->faker->city,
+            'state' => $this->faker->state,
+            'zip' => rand(11111,99999)
         ];
     }
 }

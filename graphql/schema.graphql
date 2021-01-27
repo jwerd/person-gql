@@ -30,6 +30,7 @@ type Person  {
     created_at: DateTime!
     updated_at: DateTime!
     phones: [Phone!]! @hasMany
+    addresses: [Address!]! @hasMany
 }
 
 type Phone  {
@@ -37,6 +38,18 @@ type Phone  {
     area_code: Int!
     number: String!
     extension: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+    person: Person! @belongsTo
+}
+
+type Address  {
+    id: ID!
+    street1: String!
+    street2: String
+    city: String!
+    state: String!
+    zip: String!
     created_at: DateTime!
     updated_at: DateTime!
     person: Person! @belongsTo
