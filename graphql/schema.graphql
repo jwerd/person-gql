@@ -11,6 +11,8 @@ type Query {
     person(id: ID @eq): Person @find
     phones: [Phone!]! @paginate(defaultCount: 10)
     phone(id: ID @eq): Phone @find
+    relationships: [Relationship!]! @paginate(defaultCount: 10)
+    relationships(id: ID @eq): Relationship @find
 }
 
 type User {
@@ -31,6 +33,7 @@ type Person  {
     updated_at: DateTime!
     phones: [Phone!]! @hasMany
     addresses: [Address!]! @hasMany
+    relationships: [Relationship!]! @hasMany
     addressCount: Int! @count(relation: "addresses")
     phoneCount: Int! @count(relation: "phones")
 }
@@ -59,6 +62,9 @@ type Address  {
 
 type Relationship {
     id: ID!
+    person: Person! @belongsTo
+    relationshipPerson: Person! @belongsTo
+    relationshipType: RelationshipType! @hasOne
 }
 
 type RelationshipType {

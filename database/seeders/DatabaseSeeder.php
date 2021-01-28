@@ -18,8 +18,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\Person::factory(20)->create()->map(function ($person) {
             $person->phones()->saveMany(\App\Models\Phone::factory(rand(1,20))->make());
             $person->addresses()->saveMany(\App\Models\Address::factory(rand(1,20))->make());
+            $person->relationships()->saveMany(\App\Models\Relationship::factory(rand(1,20))->make());
         });
-        \App\Models\Relationship::factory(10)->create();
+       // \App\Models\Relationship::factory(10)->create();
         // \App\Models\Phone::factory(20)->create();
         // \App\Models\Address::factory(20)->create();
     }

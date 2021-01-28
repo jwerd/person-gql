@@ -18,4 +18,9 @@ class Person extends Model
     {
         return $this->hasMany(Address::class);
     }
+
+    public function relationships()
+    {
+        return $this->hasMany(Relationship::class);
+    }
 }

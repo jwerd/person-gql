@@ -18,4 +18,9 @@ class Relationship extends Model
     {
         return $this->belongsTo(Person::class, 'relationship_person_id');
     }
+    
+    public function relationshipType()
+    {
+        return $this->hasOne(RelationshipType::class, 'id', 'relationship_type_id');
+    }
 }
