@@ -31,6 +31,8 @@ type Person  {
     updated_at: DateTime!
     phones: [Phone!]! @hasMany
     addresses: [Address!]! @hasMany
+    addressCount: Int! @count(relation: "addresses")
+    phoneCount: Int! @count(relation: "phones")
 }
 
 type Phone  {
@@ -53,4 +55,15 @@ type Address  {
     created_at: DateTime!
     updated_at: DateTime!
     person: Person! @belongsTo
+}
+
+type Relationship {
+    id: ID!
+}
+
+type RelationshipType {
+    id: ID!
+    name: String!
+    created_at: DateTime!
+    updated_at: DateTime!
 }
