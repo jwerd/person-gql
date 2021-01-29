@@ -13,6 +13,8 @@ type Query {
     phone(id: ID @eq): Phone @find
     relationships: [Relationship!]! @paginate(defaultCount: 10)
     relationships(id: ID @eq): Relationship @find
+    relationshipTypes: [RelationshipType!]! @paginate(defaultCount: 10)
+    relationshipTypes(id: ID @eq): RelationshipType @find
 }
 
 type User {
@@ -72,4 +74,6 @@ type RelationshipType {
     name: String!
     created_at: DateTime!
     updated_at: DateTime!
+    relationships: Relationship! @hasMany
+    relationshipCount: Int! @count(relation: "relationships")
 }

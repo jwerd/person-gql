@@ -12,4 +12,9 @@ class RelationshipType extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function relationships()
+    {
+        return $this->hasMany(Relationship::class, 'id', 'relationship_type_id');
+    }
 }
