@@ -15,6 +15,6 @@ class RelationshipType extends Model
 
     public function relationships()
     {
-        return $this->hasMany(Relationship::class, 'id', 'relationship_type_id');
+        return $this->hasMany(Relationship::class, 'relationship_type_id', 'id');
     }
 }

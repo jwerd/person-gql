@@ -1,6 +1,28 @@
 Laravel + Lighthouse GraphQL
 
-Basic query to return person/phone/relationship/relationshiptype payload
+Basic query to return relationshipTypes with relationships payload
+
+    {
+        relationshipTypes {
+            data {
+                id
+                name
+                relationships {
+                    person {
+                        first_name
+                        last_name
+                    }
+                    relationshipPerson {
+                        first_name
+                        last_name
+                    }
+                }
+                relationshipCount
+            }
+        }
+    }
+
+Basic query to return person/phone/relationship/relationshipType payload
 
     {
         persons(first:100) {
