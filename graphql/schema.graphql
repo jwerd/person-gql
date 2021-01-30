@@ -6,9 +6,9 @@ scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date
 
 type Query {
     me: User @auth
-    users: [User!]! @guard(with: ["api"]) @paginate(defaultCount: 10)
+    users: [User!]! @guard @paginate(defaultCount: 10)
     user(id: ID @eq): User @find
-    persons: [Person!]! @guard(with: ["api"]) @paginate(defaultCount: 10)
+    persons: [Person!]! @guard @paginate(defaultCount: 10)
     person(id: ID @eq): Person @find
     pets: [Pet!]! @paginate(defaultCount: 10)
     pet(id: ID @eq): Pet @find

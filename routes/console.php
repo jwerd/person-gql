@@ -25,6 +25,12 @@ Artisan::command('user', function () {
         'email' => 'test@example.com',
         'password' => bcrypt('secret')
     ]);
-    // $token = $user->createToken('GraphQL Accesss')->accessToken;
-    // dump($token);
+    $token = $user->createToken('my-app-token')->plainTextToken;
+
+    $response = [
+        'user' => $user,
+        'token' => $token
+    ];
+    
+    dump($response);
 })->describe('Create sample user');
