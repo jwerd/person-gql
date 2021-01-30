@@ -13,7 +13,7 @@ type Query {
     phone(id: ID @eq): Phone @find
     relationships: [Relationship!]! @paginate(defaultCount: 10)
     relationship(id: ID @eq): Relationship @find
-    relationshipTypes: [RelationshipType!]! @paginate(defaultCount: 10)
+    relationshipTypes: [RelationshipType!]! @all
     relationshipType(id: ID @eq): RelationshipType @find
 }
 
@@ -65,8 +65,8 @@ type Address  {
 type Relationship {
     id: ID!
     person: Person! @belongsTo
-    relationshipPerson: Person! @belongsTo
-    relationshipType: RelationshipType! @hasOne
+    relative: Person! @belongsTo
+    type: RelationshipType! @hasOne
 }
 
 type RelationshipType {

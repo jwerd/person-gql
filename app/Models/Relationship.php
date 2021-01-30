@@ -14,12 +14,12 @@ class Relationship extends Model
         return $this->belongsTo(Person::class);
     }
 
-    public function relationshipPerson()
+    public function relative()
     {
         return $this->belongsTo(Person::class, 'relationship_person_id');
     }
     
-    public function relationshipType()
+    public function type()
     {
         return $this->hasOne(RelationshipType::class, 'id', 'relationship_type_id');
     }
