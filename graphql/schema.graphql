@@ -3,12 +3,18 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+enum PetType {
+   DOG
+   CAT
+   FISH
+   BIRD
+}
 
 type Query {
     me: User @auth
     users: [User!]! @guard @paginate(defaultCount: 10)
     user(id: ID @eq): User @find
-    persons: [Person!]! @guard @paginate(defaultCount: 10)
+    persons(first_name: String @where(operator: "like")): [Person!]! @guard @paginate(defaultCount: 10)
     person(id: ID @eq): Person @find
     pets: [Pet!]! @paginate(defaultCount: 10)
     pet(id: ID @eq): Pet @find
@@ -52,6 +58,8 @@ type Pet  {
     created_at: DateTime!
     updated_at: DateTime!
     person: Person! @belongsTo
+    comments: [Comments]! @morphMany
+
 }
 
 type Phone  {
@@ -91,3 +99,13 @@ type RelationshipType {
     relationships: [Relationship!]! @hasMany
     relationshipCount: Int! @count(relation: "relationships")
 }
+
+type Comments {
+  id: ID!
+  body: String!
+  commentable: Commentable! @morphTo
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+union Commentable = Pet

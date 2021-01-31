@@ -17,9 +17,16 @@ class DatabaseSeeder extends Seeder
         $this->call(RelationshipTypeSeeder::class);
         \App\Models\Person::factory(20)->create()->map(function ($person) {
             $person->pets()->saveMany(\App\Models\Pet::factory(rand(0,4))->make());
+            //$person->pets()->comments()
             $person->phones()->saveMany(\App\Models\Phone::factory(rand(1,20))->make());
             $person->addresses()->saveMany(\App\Models\Address::factory(rand(1,20))->make());
             $person->relationships()->saveMany(\App\Models\Relationship::factory(rand(1,20))->make());
+        });
+        
+        // Add random comments to pets
+        \App\Models\Pet::all()->map(function ($pet) {
+            //dump(\App\Models\Comment::factory(rand(0,15))->make());
+            $pet->comments()->create(['body' => 'test']);
         });
        // \App\Models\Relationship::factory(10)->create();
         // \App\Models\Phone::factory(20)->create();

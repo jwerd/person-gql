@@ -32,5 +32,5 @@ Artisan::command('user', function () {
         'token' => $token
     ];
     
-    dump($response);
+    dump($token);
 })->describe('Create sample user');
