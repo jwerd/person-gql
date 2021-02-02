@@ -18,15 +18,19 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RelationshipTypeSeeder::class);
         \App\Models\Person::factory(20)->create(['user_id' => 1])->map(function ($person) {
-            $person->save(['user_id' => DB::table('users')
+            dump($person->id);
+            $user_id = DB::table('users')
             ->inRandomOrder()
-            ->first()->id]);
+            ->first()->id;
+            dump($user_id);
+            $person->update(['user_id' => $user_id]);
 
-            $person->pets()->saveMany(\App\Models\Pet::factory(rand(0,4))->make());
+            $person->pets()->saveMany(\App\Models\Pet::factory(rand(0,4))->make(['person_id' => $person->id]));
             //$person->pets()->comments()
-            $person->phones()->saveMany(\App\Models\Phone::factory(rand(1,20))->make());
-            $person->addresses()->saveMany(\App\Models\Address::factory(rand(1,20))->make());
-            $person->relationships()->saveMany(\App\Models\Relationship::factory(rand(1,20))->make());
+            $person->phones()->saveMany(\App\Models\Phone::factory(rand(1,20))->make(['person_id' => $person->id]));
+            $person->addresses()->saveMany(\App\Models\Address::factory(rand(1,20))->make(['person_id' => $person->id]));
+            $relationship = \App\Models\Person::factory()->create(['user_id' => $user_id]);
+            $person->relationships()->saveMany(\App\Models\Relationship::factory(1)->make(['person_id' => $person->id, 'relationship_person_id' => $relationship->id]));
         });
         
         // Add random comments to pets
