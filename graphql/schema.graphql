@@ -15,7 +15,7 @@ type Query {
     users: [User!]! @guard @paginate(defaultCount: 10)
     user(id: ID @eq): User @find
     persons(first_name: String @where(operator: "like")): [Person!]! @guard @paginate(defaultCount: 10)
-    person(id: ID @eq): Person @find
+    person(id: ID @eq): Person @find @can(ability: "view", find: "id") 
     pets: [Pet!]! @paginate(defaultCount: 10)
     pet(id: ID @eq): Pet @find
     phones: [Phone!]! @paginate(defaultCount: 10)

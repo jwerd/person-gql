@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,9 +14,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $users = \App\Models\User::factory(2)->create();
+
         $this->call(RelationshipTypeSeeder::class);
-        \App\Models\Person::factory(20)->create()->map(function ($person) {
+        \App\Models\Person::factory(20)->create(['user_id' => 1])->map(function ($person) {
+            $person->save(['user_id' => DB::table('users')
+            ->inRandomOrder()
+            ->first()->id]);
+
             $person->pets()->saveMany(\App\Models\Pet::factory(rand(0,4))->make());
             //$person->pets()->comments()
             $person->phones()->saveMany(\App\Models\Phone::factory(rand(1,20))->make());

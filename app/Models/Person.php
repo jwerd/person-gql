@@ -9,6 +9,12 @@ class Person extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'user_id'
+    ];
+
     public function phones()
     {
         return $this->hasMany(Phone::class);

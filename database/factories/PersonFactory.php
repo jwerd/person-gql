@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use App\Models\Person;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,8 +23,9 @@ class PersonFactory extends Factory
     public function definition()
     {
         return [
+            'user_id'    => null,
             'first_name' => $this->faker->name,
-            'last_name' => $this->faker->name,
+            'last_name'  => $this->faker->name,
         ];
     }
 }

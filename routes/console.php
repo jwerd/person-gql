@@ -19,12 +19,14 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Artisan::command('user', function () {
-    $user = \App\Models\User::updateOrCreate(['email' => 'test@example.com'],
-    [
-        'name' => 'Sample User',
-        'email' => 'test@example.com',
-        'password' => bcrypt('secret')
-    ]);
+    // $user = \App\Models\User::updateOrCreate(['email' => 'test@example.com'],
+    // [
+    //     'name' => 'Sample User',
+    //     'email' => 'test@example.com',
+    //     'password' => bcrypt('secret')
+    // ]);
+    $user = \App\Models\User::first();
+    
     $token = $user->createToken('my-app-token')->plainTextToken;
 
     $response = [
