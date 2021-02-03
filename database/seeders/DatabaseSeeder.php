@@ -18,11 +18,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RelationshipTypeSeeder::class);
         \App\Models\Person::factory(20)->create(['user_id' => 1])->map(function ($person) {
-            dump($person->id);
             $user_id = DB::table('users')
             ->inRandomOrder()
             ->first()->id;
-            dump($user_id);
+            dump($person->id, $user_id);
             $person->update(['user_id' => $user_id]);
 
             $person->pets()->saveMany(\App\Models\Pet::factory(rand(0,4))->make(['person_id' => $person->id]));
